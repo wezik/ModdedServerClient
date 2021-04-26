@@ -8,3 +8,6 @@ C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.csproj.GenerateResource.ca
 C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
 C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.exe
 C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.pdb
+C:\Users\wdomi\source\repos\setup\Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\wdomi\source\repos\setup\Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.csproj.CopyComplete

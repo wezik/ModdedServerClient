@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Net;
@@ -8,18 +10,29 @@ namespace Test
 {
     public partial class Form1 : Form
     {
-        private static String path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        private String dir = path + "/.minecraft/mods";
-        private String fileName = "/temp.zip";
+        private static string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        private string dir = path + "/.minecraft/mods";
+        private string fileName = "/temp.zip";
         private static bool extracted = false;
         private static bool forgeDownloaded = false;
-        private String currDir = Directory.GetCurrentDirectory();
+        private string currDir = Directory.GetCurrentDirectory();
+        private string skinsDir = path + "/.minecraft/cachedImages/skins/";
 
         //Link to direct download forge version
-        private String forgeUrl = "";
+        private string forgeUrl = "";
 
         //Link to direct download for your Modpack 
-        private String modsWinrarUrl = "";
+        private string modsWinrarUrl = "";
+
+        /* Link to skins Json
+         * {
+         *  [
+         *      "name": "url",
+         *      "name": "url"
+         *  ]
+         * }
+         * */
+        private string skinsUrl = "";
 
         public Form1()
         {
@@ -37,6 +50,33 @@ namespace Test
             downloadModFiles();
         }
 
+        private void fetchSkins()
+        {
+            if (!Directory.Exists(skinsDir))
+            {
+                Directory.CreateDirectory(skinsDir);
+            }
+            using (WebClient wc = new WebClient()) {
+                string json = wc.DownloadString(skinsUrl);
+                var skins = JArray.Parse(json);
+                foreach(JObject root in skins)
+                {
+                    foreach (KeyValuePair<String, JToken> app in root)
+                    {
+                        string fileName = app.Key;
+                        string url = (String)app.Value["url"];
+                        using (WebClient wc2 = new WebClient())
+                        {
+                            wc2.DownloadFileAsync(
+                            new System.Uri(url),
+                            skinsDir + fileName + ".png");
+                        }
+                    }
+                }
+            }
+            button1.Text = "Skiny Aktualne";
+        }
+
         private void extractFiles()
         {
             ZipFile.ExtractToDirectory(dir + fileName,dir);
@@ -50,14 +90,14 @@ namespace Test
             {
                 Directory.CreateDirectory(dir);
             }
-            String[] files = Directory.GetFiles(dir);
-            foreach (String file in files)
+            string[] files = Directory.GetFiles(dir);
+            foreach (string file in files)
             {
                 File.Delete(file);
             }
             using (WebClient wc = new WebClient())
             {
-                String url = wc.DownloadString(modsWinrarUrl);
+                string url = wc.DownloadString(modsWinrarUrl);
                 wc.DownloadProgressChanged += wc_DownloadModProgressChanged;
                 wc.DownloadFileAsync(
                     new System.Uri(url),
@@ -85,7 +125,7 @@ namespace Test
         {
             using (WebClient wc = new WebClient())
             {
-                String url = wc.DownloadString(forgeUrl);
+                string url = wc.DownloadString(forgeUrl);
                 wc.DownloadProgressChanged += wc_DownloadForgeProgressChanged;
                 wc.DownloadFileAsync(
                     new System.Uri(url),
@@ -112,6 +152,13 @@ namespace Test
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = false;
+            button1.Text = "Ściąganie Skinów";
+            fetchSkins();
         }
     }
 }

@@ -33,6 +33,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -81,10 +82,21 @@
             this.label1.Text = "Instalacja modów nadpisze wszystkie mody w folderze mods";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(307, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(65, 64);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Update Skinów Offline";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(309, 115);
+            this.ClientSize = new System.Drawing.Size(381, 115);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.button3);
@@ -104,6 +116,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
