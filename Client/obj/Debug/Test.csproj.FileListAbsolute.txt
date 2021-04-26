@@ -1,0 +1,10 @@
+C:\Users\wdomi\source\repos\setup\Test\bin\Debug\Test.exe.config
+C:\Users\wdomi\source\repos\setup\Test\bin\Debug\Test.exe
+C:\Users\wdomi\source\repos\setup\Test\bin\Debug\Test.pdb
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.csprojAssemblyReference.cache
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.Form1.resources
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.Properties.Resources.resources
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.csproj.GenerateResource.cache
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.exe
+C:\Users\wdomi\source\repos\setup\Test\obj\Debug\Test.pdb
